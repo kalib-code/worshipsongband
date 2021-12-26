@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_resources_files",
+  "info": {
+    "displayName": "file",
+    "icon": "file-upload"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "string"
+    },
+    "download_link": {
+      "type": "string"
+    },
+    "price": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_resources_chord_charts",
+  "info": {
+    "displayName": "Chord Charts",
+    "icon": "list-ol",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "download_link": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "price": {
+      "type": "integer"
+    }
+  }
+}

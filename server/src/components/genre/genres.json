@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_genre_genres",
+  "info": {
+    "displayName": "Genres",
+    "icon": "exchange-alt"
+  },
+  "options": {},
+  "attributes": {
+    "genre": {
+      "type": "string"
+    }
+  }
+}

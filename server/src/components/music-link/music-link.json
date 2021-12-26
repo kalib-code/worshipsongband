@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_music_link_music_links",
+  "info": {
+    "displayName": "Music Link",
+    "icon": "unlink"
+  },
+  "options": {},
+  "attributes": {
+    "provider": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

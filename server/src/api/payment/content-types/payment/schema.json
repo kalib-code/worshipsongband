@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "payments",
+  "info": {
+    "singularName": "payment",
+    "pluralName": "payments",
+    "displayName": "Payments",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "paymentId": {
+      "type": "string",
+      "unique": true
+    },
+    "payment_intent": {
+      "type": "string"
+    },
+    "payment_status": {
+      "type": "string"
+    },
+    "payment_response": {
+      "type": "json"
+    }
+  }
+}

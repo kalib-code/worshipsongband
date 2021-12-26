@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_youtube_link_youtube_links",
+  "info": {
+    "displayName": "Youtube Link",
+    "icon": "video"
+  },
+  "options": {},
+  "attributes": {
+    "link": {
+      "type": "string"
+    }
+  }
+}

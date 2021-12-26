@@ -1,0 +1,75 @@
+{
+  "kind": "collectionType",
+  "collectionName": "songs",
+  "info": {
+    "singularName": "song",
+    "pluralName": "songs",
+    "displayName": "Songs",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "string"
+    },
+    "themes": {
+      "displayName": "Themes",
+      "type": "component",
+      "repeatable": true,
+      "component": "theme.themes"
+    },
+    "genres": {
+      "displayName": "Genres",
+      "type": "component",
+      "repeatable": true,
+      "component": "genre.genres"
+    },
+    "writer": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "year": {
+      "type": "string"
+    },
+    "lyric": {
+      "type": "richtext"
+    },
+    "sampleMusic": {
+      "type": "string"
+    },
+    "album": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::album.album"
+    },
+    "artist": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "MusicLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "music-link.music-link"
+    },
+    "Resources": {
+      "type": "dynamiczone",
+      "components": [
+        "resources.chord-charts",
+        "resources.file",
+        "resources.mutli-tracks"
+      ]
+    },
+    "timeSigniture": {
+      "type": "string"
+    }
+  }
+}

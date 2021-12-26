@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_resources_mutli_tracks",
+  "info": {
+    "displayName": "Mutli Tracks",
+    "icon": "th-list",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Type": {
+      "type": "string"
+    },
+    "download_link": {
+      "type": "string"
+    },
+    "price": {
+      "type": "integer"
+    }
+  }
+}

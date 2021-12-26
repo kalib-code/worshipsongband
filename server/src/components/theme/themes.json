@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_theme_themes",
+  "info": {
+    "displayName": "Themes",
+    "icon": "theater-masks"
+  },
+  "options": {},
+  "attributes": {
+    "theme": {
+      "type": "string"
+    }
+  }
+}

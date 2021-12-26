@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_social_link_social_links",
+  "info": {
+    "displayName": "Social Link",
+    "icon": "external-link-square-alt"
+  },
+  "options": {},
+  "attributes": {
+    "provider": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}
