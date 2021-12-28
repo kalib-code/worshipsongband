@@ -82,9 +82,6 @@
     "lastName": {
       "type": "string"
     },
-    "stripe_secret_key": {
-      "type": "password"
-    },
     "youtubeLinks": {
       "type": "component",
       "repeatable": true,
@@ -99,6 +96,10 @@
       "type": "component",
       "repeatable": true,
       "component": "address.address"
+    },
+    "stripe_secret_key": {
+      "type": "text",
+      "private": true
     }
   }
 }

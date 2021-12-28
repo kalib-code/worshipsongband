@@ -65,7 +65,7 @@
       "components": [
         "resources.chord-charts",
         "resources.file",
-        "resources.mutli-tracks"
+        "resources.multi-tracks"
       ]
     },
     "timeSigniture": {

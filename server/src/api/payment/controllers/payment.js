@@ -1,9 +1,11 @@
-'use strict';
+"use strict";
 
 /**
  *  payment controller
  */
 
-const { createCoreController } = require('@strapi/strapi').factories;
+const { createCoreController } = require("@strapi/strapi").factories;
 
-module.exports = createCoreController('api::payment.payment');
+module.exports = createCoreController("api::payment.payment", ({ strapi }) => ({
+
+}));

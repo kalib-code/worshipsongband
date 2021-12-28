@@ -1,13 +1,13 @@
 {
   "collectionName": "components_resources_mutli_tracks",
   "info": {
-    "displayName": "Mutli Tracks",
+    "displayName": "Multi Tracks",
     "icon": "th-list",
     "description": ""
   },
   "options": {},
   "attributes": {
-    "Type": {
+    "type": {
       "type": "string"
     },
     "download_link": {

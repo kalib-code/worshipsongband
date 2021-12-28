@@ -51,7 +51,7 @@ const Download = (props) => {
 
 Download.defaultProps = {
   button: 'Download',
-  image_src: 'c306f54a-01d0-49c1-9acb-69b1da3a3aab',
+  image_src: '/playground_assets/macbook-400w.png',
   text: 'Mac OS',
   image_alt: 'image',
 }

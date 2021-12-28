@@ -1,176 +1,57 @@
 import React from 'react'
+import Markdown from 'markdown-to-jsx';
+
+
 
 import Header from '../../components/header'
 import SongInfos from '../../components/song-infos'
 import PriceDetails from '../../components//price-details'
 import Footer from '../../components/footer'
+import AdditionalInfo from '../../components/song-additional-info';
 
-const StoreSingleView = () => {
+const StoreSingleView = ({song}) => {
+  console.log()
   return (
     <>
+ 
       <div className="container">
         <Header rootClassName="rootClassName1"></Header>
         <div className="container1">
           <div className="details-section">
-            <SongInfos></SongInfos>
-            <PriceDetails></PriceDetails>
+            <SongInfos
+            title_text={song.data.attributes.title}
+            artist_text={song.data.attributes.artist.data.attributes.firstName}
+          //TODO: key on db
+            key_text={"G"}
+            time_signature_text={song.data.attributes.timeSignature}
+            length_text={song.data.attributes.duration}
+            image_alt={song.data.attributes.album.data.attributes.cover.data.attributes.formats.medium.name}
+             //TODO: add type on db
+            type_text={"Original"}
+            image_src={`http://localhost:1337${song.data.attributes.album.data.attributes.cover.data.attributes.formats.medium.url}`}
+             //TODO: add bpm on db
+            bpm_text={"4/4"}
+            />
+          
+            <PriceDetails
+            Resources={song.data.attributes.Resources}
+            songData={song.data}
+            />
           </div>
           <div className="container2">
-            <span>
-              <span>Verse 1</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>Joy to the world the Lord is come</span>
-              <br></br>
-              <span>Let earth receive her King</span>
-              <br></br>
-              <span>Let every heart prepare Him room</span>
-              <br></br>
-              <span>And Heaven and nature sing</span>
-              <br></br>
-              <span>And Heaven and nature sing</span>
-              <br></br>
-              <span>And Heaven and Heaven</span>
-              <br></br>
-              <span>And nature sing</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>Chorus</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>We will sing sing sing</span>
-              <br></br>
-              <span>Joy to the world</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>Chorus</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>We will sing sing sing</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>Verse 2</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>Joy to the world the Savior reigns</span>
-              <br></br>
-              <span>Let men their songs employ</span>
-              <br></br>
-              <span>While fields and floods</span>
-              <br></br>
-              <span>Rocks hills and plains</span>
-              <br></br>
-              <span>Repeat the sounding joy</span>
-              <br></br>
-              <span>Repeat the sounding joy</span>
-              <br></br>
-              <span>Repeat repeat</span>
-              <br></br>
-              <span>The sounding joy</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>Chorus</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>We will sing sing sing</span>
-              <br></br>
-              <span>Joy to the world</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>Chorus</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>We will sing sing sing</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>Verse 3</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>He rules the world with truth and grace</span>
-              <br></br>
-              <span>And makes the nations prove</span>
-              <br></br>
-              <span>The glories of His righteousness</span>
-              <br></br>
-              <span>And wonders of His love</span>
-              <br></br>
-              <span>And wonders of His love</span>
-              <br></br>
-              <span>And wonders</span>
-              <br></br>
-              <span>Wonders of His love</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>Chorus</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>We will sing sing sing</span>
-              <br></br>
-              <span>Joy to the world</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>Chorus</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>We will sing sing sing</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>Bridge</span>
-              <br></br>
-              <span></span>
-              <br></br>
-              <span>Joyful joyful we adore Thee</span>
-              <br></br>
-              <span>God of glory Lord of love</span>
-              <br></br>
-              <span>Hearts unfold like flowers before Thee</span>
-              <br></br>
-              <span>Opening to the sun above</span>
-            </span>
+            <div className="container4">
+            <AdditionalInfo/>
+            </div>
+             <Markdown>{song.data.attributes.lyric}</Markdown>
             <div className="container3">
-              <span>
-                <span className="text66">Themes:</span>
-                <br></br>
-                <span>BLESSING, CHRISTMAS, JOY</span>
-                <br></br>
-                <span className="text68">Genres:</span>
-                <br></br>
-                <span>CHRISTMAS, MALE LEAD</span>
-                <br></br>
-                <span className="text70">Writers:</span>
-                <br></br>
-                <span>Hanna Ford</span>
-                <br></br>
-                <span className="text72">Year:</span>
-                <br></br>
-                <span>2019</span>
-                <br></br>
-                <span className="text74">mtID:</span>
-                <br></br>
-                <span>14610</span>
-                <br></br>
-                <span></span>
-                <br></br>
-                <span>℗ 2019 Hanna Ford</span>
-              </span>
+              <AdditionalInfo
+               themeText={song.data.attributes.themes.map(e => e.theme)}
+               genresText={song.data.attributes.genres.map(e => e.genre)}
+               wirterText= {song.data.attributes.writer}
+               yearText={song.data.attributes.year}
+              //  mtIdText={}
+              //  copyRightsText={''}
+               />
             </div>
           </div>
         </div>
@@ -206,6 +87,7 @@ const StoreSingleView = () => {
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: var(--dl-space-space-fourunits);
           }
           .container2 {
             flex: 0 0 auto;
@@ -223,6 +105,19 @@ const StoreSingleView = () => {
             border-radius: 20px;
             padding-right: var(--dl-space-space-oneandhalfunits);
             padding-bottom: var(--dl-space-space-oneandhalfunits);
+            margin-bottom: var(--dl-space-space-oneandhalfunits);
+            background-color: #f7f5e9;
+          }
+          .container4 {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: flex-start;
+            padding-top: var(--dl-space-space-oneandhalfunits);
+            padding-left: var(--dl-space-space-oneandhalfunits);
+            border-radius: 20px;
+            padding-right: var(--dl-space-space-oneandhalfunits);
+            padding-bottom: var(--dl-space-space-oneandhalfunits);
+            margin-bottom: var(--dl-space-space-oneandhalfunits);
             background-color: #f7f5e9;
           }
           .text66 {
@@ -240,6 +135,12 @@ const StoreSingleView = () => {
           .text74 {
             font-weight: 700;
           }
+          @media (max-width: 2000px) {
+
+            .container4 {
+              display: none;
+              }
+          }
           @media (max-width: 767px) {
             .container1 {
               align-items: flex-end;
@@ -249,6 +150,7 @@ const StoreSingleView = () => {
               align-items: flex-end;
               flex-direction: column;
             }
+           
           }
           @media (max-width: 479px) {
             .container1 {
@@ -262,11 +164,42 @@ const StoreSingleView = () => {
             .container2 {
               flex-direction: column;
             }
+            .container4 {
+              display: block;
+              }
+              .container3{
+                display: none;
+              }
           }
         `}
       </style>
     </>
   )
+}
+
+export async function getServerSideProps(context) {
+  const res = await fetch(
+    `${process.env.URL}/api/songs/${context.params.id}?populate[album][populate][cover]=*&populate[Resources][populate][1]=*&populate[artist][populate][2]=*&populate[genres][populate][3]=*&populate[themes][populate][4]=*`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${process.env.TOKEN}`,
+      },
+    }
+  );
+
+  const song = await res.json();
+  if (!song) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: { song },
+  };
 }
 
 export default StoreSingleView

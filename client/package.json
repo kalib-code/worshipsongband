@@ -12,12 +12,16 @@
   "author": "Karl Kenneth Alibuas",
   "license": "MIT",
   "dependencies": {
+    "markdown-to-jsx": "^7.1.5",
     "next": "^10.2.0",
     "prop-types": "15.7.2",
+    "query": "^0.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-query": "^3.34.6",
-    "react-router-dom": "^6.2.1"
+    "react-router-dom": "^6.2.1",
+    "react-select": "^5.2.1",
+    "use-sound": "^4.0.1"
   },
   "devDependencies": {}
 }
