@@ -6,9 +6,8 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import SongListView from "../../components/song-list-view";
 
-const API_URL = "http://localhost:1337";
-const API_KEY =
-  "62a4a9e258a89966e254aec351598ee79e0064ed87dab70f22b7449edf3f350008fd2996dd0810fde7b278215b36592bcd2962bc56b1b6dc8c13053d7f82dc500a73999fd4cb7bdbe64b0b7d2fcc14d1717c33168463f730d1d3a5902b2569b33014c85ea2a3864d875502229c552825de2b5f83341da73bd3c772ff657dc1b3";
+const API_URL = process.env.URL
+const API_KEY = process.env.TOKEN;
 
 const getSongs = async (key) => {
   const songKey = key.queryKey[1].song;

@@ -97,6 +97,7 @@ const Home = () => {
         <div className="container5">
           <h2 className="text7">Available for Download</h2>
           <Download></Download>
+       
         </div>
         <Footer></Footer>
       </div>

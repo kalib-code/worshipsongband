@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import LoginModal from "react-login-modal";
 
 import PropTypes from 'prop-types'
 
@@ -7,6 +8,8 @@ import NavigationLinks from '../navigation-links'
 import DownloadButton from '../download-button'
 
 const Header = (props) => {
+
+
   return (
     <>
       <header className={`header ${props.rootClassName} `}>

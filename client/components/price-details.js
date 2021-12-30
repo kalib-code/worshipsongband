@@ -1,9 +1,13 @@
-import React from 'react'
+import React , {useState} from 'react'
 
 import PropTypes from 'prop-types'
 
-
+import { parseCookies } from 'nookies'
 const payment = (songData) => {
+
+const cookies = parseCookies().auth
+if(!cookies) return
+
 
 const productData = songData.attributes.Resources.map(product =>{
  return {
@@ -65,7 +69,7 @@ const PriceDetails = (props) => {
           })}
         </span>
         <span className="total-price">{`$ ${props.Resources.map(e=> e.price).reduce(totalPrice)}`}</span>
-        <button className="button" onClick={()=>{payment(props.songData)}}>{props.button}</button>
+        <button className="button" onClick={()=>{payment(props.songData)}}>{ props.purchaseText}</button>
       </div>
       <style jsx>
         {`
@@ -115,14 +119,14 @@ const PriceDetails = (props) => {
 }
 
 PriceDetails.defaultProps = {
-  button: 'Purchase',
   Resources:[{'type':'Multi Track','price':9.99},{'type':'Chord Chart','price':2.5},{'type':'MP3 File','price':5.99}]
 }
 
 PriceDetails.propTypes = {
   button: PropTypes.string,
   Resources: PropTypes.array,
-  songData: PropTypes.object
+  songData: PropTypes.object,
+  purchaseText: PropTypes.string
 }
 
 export default PriceDetails

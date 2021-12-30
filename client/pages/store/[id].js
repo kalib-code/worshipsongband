@@ -1,7 +1,7 @@
-import React from 'react'
+import React , { useState }from 'react'
 import Markdown from 'markdown-to-jsx';
 
-
+import { parseCookies } from 'nookies';
 
 import Header from '../../components/header'
 import SongInfos from '../../components/song-infos'
@@ -9,8 +9,21 @@ import PriceDetails from '../../components//price-details'
 import Footer from '../../components/footer'
 import AdditionalInfo from '../../components/song-additional-info';
 
-const StoreSingleView = ({song}) => {
-  console.log()
+const StoreSingleView = ({song }) => {
+
+  let isPurchaseText = "Sign in to purchase";
+
+
+  const token = parseCookies();
+
+  if(token.auth){
+    isPurchaseText = "Purchase"
+  }
+
+
+  //TODO: check if user purchased the song if not enable buy button
+  //TODO: check if user is logged in if not enable buy button
+
   return (
     <>
  
@@ -36,6 +49,7 @@ const StoreSingleView = ({song}) => {
             <PriceDetails
             Resources={song.data.attributes.Resources}
             songData={song.data}
+            purchaseText = {isPurchaseText}
             />
           </div>
           <div className="container2">
@@ -178,6 +192,8 @@ const StoreSingleView = ({song}) => {
 }
 
 export async function getServerSideProps(context) {
+
+
   const res = await fetch(
     `${process.env.URL}/api/songs/${context.params.id}?populate[album][populate][cover]=*&populate[Resources][populate][1]=*&populate[artist][populate][2]=*&populate[genres][populate][3]=*&populate[themes][populate][4]=*`,
     {
@@ -198,7 +214,7 @@ export async function getServerSideProps(context) {
     };
   }
   return {
-    props: { song },
+    props: { song  },
   };
 }
 

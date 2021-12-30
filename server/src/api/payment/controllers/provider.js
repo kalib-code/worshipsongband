@@ -22,19 +22,24 @@ module.exports = {
       line_items: ctx.request.body.product_data,
       mode: "payment",
       success_url: `${YOUR_DOMAIN}/?success=true&orderID=${orderEntry.id}`, 
-      cancel_url: `${YOUR_DOMAIN}?canceled=true&payment_Id=`,
+      cancel_url: `${YOUR_DOMAIN}/store/${ctx.request.body.song_id}?canceled=true`,
     });
 
-   
 
-      console.log(orderEntry)
 
-    const entry = await strapi.entityService.create('api::payment.payment', {
+    const payment = await strapi.entityService.create('api::payment.payment', {
         data: {
           paymentId: session.id,
           payment_intent:session.payment_intent,
           payment_status: session.payment_status,
-          payment_response: session
+          payment_response: session,
+          order:orderEntry.id
+        },
+      });
+
+      await strapi.entityService.update('api::order.order',payment.id, {
+        data: {
+          payment: payment.id
         },
       });
 
