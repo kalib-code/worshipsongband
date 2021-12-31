@@ -1,14 +1,38 @@
-import React from 'react'
-
+import React, {useState, useEffect} from 'react'
+import { isAndroid,isIOS,isWindows, isMacOs } from 'react-device-detect';
 import PropTypes from 'prop-types'
+import DownloadButton from './download-button'
 
 const Download = (props) => {
+
+  const [downloadLink, setDownloadLink] = useState(null)
+
+  useEffect(() => {
+    if(isAndroid){
+
+      setDownloadLink ("Android Device")
+     }
+    
+     if(isIOS){
+       setDownloadLink("IOS Device")
+     }
+    
+     if(isWindows){
+       setDownloadLink("Windows Device")
+     }
+    
+     if(isMacOs){
+       setDownloadLink("MacOs Device")
+    
+     }
+
+  },[])
   return (
     <>
       <div className="container">
         <img alt={props.image_alt} src={props.image_src} className="image" />
-        <span className="text">{props.text}</span>
-        <button className="button">{props.button}</button>
+        <span className="text">{downloadLink}</span>
+        <DownloadButton/>
       </div>
       <style jsx>
         {`
@@ -50,16 +74,15 @@ const Download = (props) => {
 }
 
 Download.defaultProps = {
-  button: 'Download',
+
   image_src: '/playground_assets/macbook-400w.png',
   text: 'Mac OS',
   image_alt: 'image',
 }
 
 Download.propTypes = {
-  button: PropTypes.string,
+
   image_src: PropTypes.string,
-  text: PropTypes.string,
   image_alt: PropTypes.string,
 }
 

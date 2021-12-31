@@ -5,6 +5,7 @@ import Header from '../components/header'
 import FeatureCard from '../components/feature-card'
 import Download from '../components/download'
 import Footer from '../components/footer'
+import DownloadButton from '../components/download-button'
 
 const Home = () => {
   return (
@@ -39,7 +40,7 @@ const Home = () => {
               </span>
             </span>
           </span>
-          <button className="button">Download</button>
+          <DownloadButton/>
         </div>
         <div className="container1">
           <iframe
@@ -97,7 +98,6 @@ const Home = () => {
         <div className="container5">
           <h2 className="text7">Available for Download</h2>
           <Download></Download>
-       
         </div>
         <Footer></Footer>
       </div>

@@ -21,7 +21,7 @@ module.exports = {
         payment_method_types: ["card"],
       line_items: ctx.request.body.product_data,
       mode: "payment",
-      success_url: `${YOUR_DOMAIN}/?success=true&orderID=${orderEntry.id}`, 
+      success_url: `${YOUR_DOMAIN}/user?success=true&orderID=${orderEntry.id}`, 
       cancel_url: `${YOUR_DOMAIN}/store/${ctx.request.body.song_id}?canceled=true`,
     });
 

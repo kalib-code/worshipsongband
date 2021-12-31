@@ -1,13 +1,35 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Link from 'next/link'
-import LoginModal from "react-login-modal";
-
+import { parseCookies , destroyCookie } from 'nookies'
 import PropTypes from 'prop-types'
 
 import NavigationLinks from '../navigation-links'
 import DownloadButton from '../download-button'
 
 const Header = (props) => {
+  const cookies = parseCookies().auth
+
+  const [isLogin, setIsLogin] = useState(false)
+  
+
+useEffect(() => {
+
+  if(cookies){
+    setIsLogin(true)
+  }
+
+},[isLogin])
+
+
+function logoutHandler () {
+ console.log('log')
+  destroyCookie(null,'auth',{
+    path: '/',
+  })
+
+  setIsLogin(false)
+
+}
 
 
   return (
@@ -27,7 +49,15 @@ const Header = (props) => {
         </div>
        
         <div className="btn-group">
-          <button className="button">{props.button}</button>
+         { !isLogin ? <Link href='/login'>
+          <a className="button">{props.button}</a>
+          </Link> : 
+          <Link href='/'>
+          <a className="button" onClick={()=>{logoutHandler()}}>Logout</a>
+          </Link>}
+
+          {isLogin && <a className="button" href="/user">Account</a>}
+          
           <DownloadButton/>
         </div>
         <div className="menu-burger teleport-menu-burger">

@@ -12,6 +12,7 @@ const getPurchaseSong = async (key) => {
   const token = cookies.auth;
 
   const songKey = key.queryKey[1].song;
+  const pageKey = key.queryKey[1].page;
   const getUser = await fetch(`${process.env.URL}/api/users/me`, {
     method: "GET",
     headers: {
@@ -23,7 +24,7 @@ const getPurchaseSong = async (key) => {
 
   if (songKey) {
     const response = await fetch(
-      `${process.env.URL}/api/orders?populate[song][populate]=*&filters[users][id]=${userInfo.id}&filters[song][title][$eq]=${songKey}`,
+      `${process.env.URL}/api/orders?pagination[pageSize]=10&pagination[page]=${pageKey}&pagination[withCount]=true&populate[song][populate]=*&filters[users][id]=${userInfo.id}&filters[song][title][$eq]=${songKey}`,
       {
         method: "GET",
         headers: {
@@ -35,9 +36,8 @@ const getPurchaseSong = async (key) => {
     return await response.json();
   }
 
-  //default query
   const res = await fetch(
-    `${process.env.URL}/api/orders?populate[song][populate]=*&filters[users][id]=${userInfo.id}`,
+    `${process.env.URL}/api/orders?pagination[pageSize]=10&pagination[page]=${pageKey}&pagination[withCount]=true&populate[song][populate]=*&filters[users][id]=${userInfo.id}`,
     {
       method: "GET",
       headers: {
@@ -59,14 +59,13 @@ function user({ songs }) {
 
 
   const { data, error } = useQuery(
-    ["userPurchase", { song: song }],
+    ["userPurchase", { song: song , page: page}],
     getPurchaseSong,
     { initialData: songs }
   );
   
   
   useEffect(() => {
-
     if(page=== 1){
       setPrevDisabled(true);
     }else{
@@ -82,9 +81,6 @@ function user({ songs }) {
     )
 
   },[data])
-
-
-  console.log(songs)
 
 
   const list = data.data.map((song, index) => {
@@ -121,7 +117,7 @@ function user({ songs }) {
         </div>
         <div className="purchase-song-container">
           <div className="filter-song-container">
-            <span className="select-option-label-wrapper">Filter Songs</span>
+            <span className="select-option-label-wrapper">Search Songs</span>
             <div className="select-option-wrapper">
               <Select
                 options={songOptions}
@@ -151,6 +147,9 @@ function user({ songs }) {
             flex-direction: column;
             justify-content: flex-start;
           }
+          .filter-song-container {
+            width: 50%;
+          }
           .page-title {
             flex: 0 0 auto;
             width: 100%;
@@ -176,7 +175,7 @@ function user({ songs }) {
             flex-direction: column;
             grid-column: 2;
             padding-top: var(--dl-space-space-halfunit);
-            border-color: rgba(89, 89, 89, 0.25);
+           
             border-width: 1px;
             padding-left: var(--dl-space-space-twounits);
             padding-right: var(--dl-space-space-twounits);
@@ -185,7 +184,33 @@ function user({ songs }) {
             border-top-width: 0px;
             border-left-width: 0px;
             border-right-width: 0px;
-            border-bottom-width: 1px;
+            border-bottom-width: 0px;
+          }
+
+          .pagination-button {
+            flex: 0 0 auto;
+            width: 70%;
+            display: flex;
+            margin-top: var(--dl-space-space-twounits);
+            align-items: center;
+            margin-left: var(--dl-space-space-halfunit);
+            margin-right: var(--dl-space-space-halfunit);
+            margin-bottom: var(--dl-space-space-halfunit);
+            justify-content: space-between;
+          }
+          .prev-button {
+            transition: 0.3s;
+            border-width: 0px;
+            background-color: var(--dl-color-primary-maroon);
+          }
+          .prev-button:disabled {
+            background-color: #bdbdbd;
+          }
+          .next-button {
+            transition: 0.3s;
+          }
+          .next-button:disabled {
+            background-color: #bdbdbd;
           }
 
           @media (max-width: 991px) {
@@ -224,7 +249,7 @@ export async function getServerSideProps(context) {
   
   //TODO: create a policy to only allow users to see their own orders via the API id
   const res = await fetch(
-    `${process.env.URL}/api/orders?populate[song][populate]=*&filters[users][id]=${userInfo.id}`,
+    `${process.env.URL}/api/orders?pagination[pageSize]=10&pagination[page]=1&pagination[withCount]=true&populate[song][populate]=*&filters[users][id]=${userInfo.id}`,
     {
       method: "GET",
       headers: {
