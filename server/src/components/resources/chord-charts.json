@@ -15,6 +15,15 @@
     },
     "price": {
       "type": "integer"
+    },
+    "download_file": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

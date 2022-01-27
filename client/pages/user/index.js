@@ -24,7 +24,7 @@ const getPurchaseSong = async (key) => {
 
   if (songKey) {
     const response = await fetch(
-      `${process.env.URL}/api/orders?pagination[pageSize]=10&pagination[page]=${pageKey}&pagination[withCount]=true&populate[song][populate]=*&filters[users][id]=${userInfo.id}&filters[song][title][$eq]=${songKey}`,
+      `${process.env.URL}/api/orders?pagination[pageSize]=10&pagination[page]=${pageKey}&pagination[withCount]=true&populate[song][populate]=*&filters[users][id]=${userInfo.id}&filters[song][title][$eq]=${songKey}&filters[payment][payment_status]=Succeeded`,
       {
         method: "GET",
         headers: {
@@ -37,7 +37,7 @@ const getPurchaseSong = async (key) => {
   }
 
   const res = await fetch(
-    `${process.env.URL}/api/orders?pagination[pageSize]=10&pagination[page]=${pageKey}&pagination[withCount]=true&populate[song][populate]=*&filters[users][id]=${userInfo.id}`,
+    `${process.env.URL}/api/orders?pagination[pageSize]=10&pagination[page]=${pageKey}&pagination[withCount]=true&populate[song][populate]=*&filters[users][id]=${userInfo.id}&filters[payment][payment_status]=Succeeded`,
     {
       method: "GET",
       headers: {
@@ -87,14 +87,14 @@ function user({ songs }) {
 
     return (
       <SongPurchaseView
-        song_title={song.attributes.song.data.attributes.title}
+        song_title={song?.attributes?.song?.data?.attributes.title}
         artist_text={
-          song.attributes.song.data.attributes.artist.data.attributes.firstName
+          song?.attributes?.song?.data?.attributes.artist.data.attributes.firstName
         }
         song_album_text={
-          song.attributes.song.data.attributes.album.data.attributes.title
+          song?.attributes?.song?.data?.attributes.album.data.attributes.title
         }
-        resource_text={song.attributes.song.data.attributes.Resources.map(
+        resource_text={song?.attributes?.song?.data?.attributes.Resources.map(
           (e) => e.type
         )}
       />
@@ -103,8 +103,8 @@ function user({ songs }) {
 
   const songOptions = songs.data.map((song) => {
     return {
-      value: song.attributes.song.data.attributes.title,
-      label: song.attributes.song.data.attributes.title,
+      value: song?.attributes?.song?.data?.attributes.title,
+      label: song?.attributes?.song?.data?.attributes.title,
     };
   });
 
@@ -235,6 +235,7 @@ function user({ songs }) {
 }
 
 export async function getServerSideProps(context) {
+  console.log(context.query);
   const cookies = parseCookies(context).auth
 
   const getUser = await fetch(`${process.env.URL}/api/users/me`, {
@@ -246,10 +247,46 @@ export async function getServerSideProps(context) {
 
   const userInfo = await getUser.json();
 
-  
+if(context.query.success === "true"){
+  const order = await fetch(
+    `${process.env.URL}/api/orders/${context.query.orderID}?populate[song][populate]=*&populate[payment][populate]=*`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${process.env.TOKEN}`,
+      },
+    }
+  );
+
+  const OrderInfo = await order.json();
+
+
+var myHeaders = new Headers();
+myHeaders.append("Authorization", `Bearer ${cookies}`);
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "data": {
+    "payment_status": "Succeeded"
+  }
+});
+
+var requestOptions = {
+  method: 'PUT',
+  headers: myHeaders,
+  body: raw,
+};
+
+fetch(`${process.env.URL}/api/payments/${OrderInfo.data.attributes.payment.data.id}`, requestOptions)
+  .then(response => response.json())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+
+}
+ 
   //TODO: create a policy to only allow users to see their own orders via the API id
   const res = await fetch(
-    `${process.env.URL}/api/orders?pagination[pageSize]=10&pagination[page]=1&pagination[withCount]=true&populate[song][populate]=*&filters[users][id]=${userInfo.id}`,
+    `${process.env.URL}/api/orders?pagination[pageSize]=10&pagination[page]=1&pagination[withCount]=true&populate[song][populate]=*&filters[users][id]=${userInfo.id}&filters[payment][payment_status]=Succeeded`,
     {
       method: "GET",
       headers: {

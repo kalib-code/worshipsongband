@@ -114,10 +114,10 @@ const Store = ({ songs, artists, albums }) => {
         <SongListView
           key={song.id}
           id={song.id}
-          album_mage_src={`${API_URL}${song.attributes.album.data.attributes.cover.data.attributes.formats.large.url}`}
-          title_text={song.attributes.title}
-          artist_text={song.attributes.artist.data.attributes.firstName}
-          resource_text={song.attributes.Resources.map( e => e.type )}
+          album_mage_src={`${API_URL}${song?.attributes?.album?.data?.attributes?.cover.data.attributes.formats.large.url}`}
+          title_text={song?.attributes?.title}
+          artist_text={song?.attributes?.artist?.data?.attributes.firstName}
+          resource_text={song?.attributes?.Resources.map( e => e.type )}
         />
 
       );

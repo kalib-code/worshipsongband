@@ -1,7 +1,6 @@
 module.exports = {
   async stripe(ctx) {
 
-    console.log(ctx.request.body);
       //Get sk from user database
     const entity = await strapi.query('plugin::users-permissions.user').findOne(ctx.request.body.artist_id);
     const stripe = require("stripe")(entity.stripe_secret_key);
