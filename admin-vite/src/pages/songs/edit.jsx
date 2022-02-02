@@ -27,6 +27,7 @@ export const SongEdit = () => {
   const { formProps, saveButtonProps, queryResult } = useForm({
     metaData: { populate: ["album", "Resources", "artist"] },
   });
+
   const { selectProps } = useSelect({
     resource: "albums",
     optionValue: "id",
@@ -34,7 +35,6 @@ export const SongEdit = () => {
     defaultValue: "id",
   });
 
-  console.log(queryResult.data?.data , "array");
   const dataMap = queryResult.data?.data?.Resources.map((e) => {
     return {
       __component:e.__component,
@@ -52,12 +52,10 @@ export const SongEdit = () => {
     <Edit saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical"
       onFinish={(values) => {
-        console.log(values,"test")
         return (
             formProps.onFinish &&
             formProps.onFinish({
                     ...values,
-                    album: values.album?.data.id,
             }
             )
         );

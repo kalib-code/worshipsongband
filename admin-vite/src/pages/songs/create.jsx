@@ -36,7 +36,6 @@ export const SongCreate = () => {
     <Create saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical"
       onFinish={(values) => {
-        console.log(values,"test")
         return (
             formProps.onFinish &&
             formProps.onFinish({

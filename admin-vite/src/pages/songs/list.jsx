@@ -32,6 +32,7 @@ export const SongList = () => {
           ...tableProps.pagination,
           showSizeChanger: true,
         }}
+        size="small"
       >
         <Table.Column dataIndex="id" key="id" title="ID" />
 
@@ -53,7 +54,6 @@ export const SongList = () => {
           render={(_, data) => (
            
             <Space>
-               {console.log(data)}
               <Avatar
                 shape="square"
                 size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 100, xxl: 150 }}

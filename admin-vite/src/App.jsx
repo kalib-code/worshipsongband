@@ -1,8 +1,9 @@
 
-import { Refine,Icons  } from "@pankod/refine";
-import { DataProvider, AuthHelper } from "@pankod/refine-strapi-v4";
+import { Refine,Icons , Authenticated ,LayoutWrapper  } from "@pankod/refine";
+import { AuthHelper } from "@pankod/refine-strapi-v4";
 import routerProvider from "@pankod/refine-react-router";
 import axios from "axios";
+import { DataProvider } from"./dataProvider"
 
 import "./styles/antd.less";
 
@@ -24,13 +25,21 @@ import { OrderList } from "./pages/orders";
 
 const TOKEN_KEY = "strapi-jwt";
 
+const AuthenticatedCustomPage = () => {
+    return (
+        <Authenticated>
+             <LayoutWrapper>
+            <UserList />
+            </LayoutWrapper>
+        </Authenticated>
+    );
+};
+
 function App() {
 
   const axiosInstance = axios.create();
   const strapiAuthHelper = AuthHelper(API_URL + "/api");
   
- 
-
   const authProvider = {
     login: async ({ username, password }) => {
         const { data, status } = await strapiAuthHelper.login(
@@ -74,11 +83,15 @@ function App() {
 
         const { data, status } = await strapiAuthHelper.me(token);
         if (status === 200) {
-            const { id, username, email } = data;
+            const { id, username, email ,firstName , image ,biography  } = data;
             return Promise.resolve({
                 id,
                 username,
                 email,
+                firstName,
+                image,
+                biography
+
             });
         }
 
@@ -91,7 +104,16 @@ function App() {
     <Refine
             authProvider={authProvider}
             dataProvider={DataProvider(API_URL + "/api", axiosInstance)}
-            routerProvider={routerProvider}
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                     {
+                        exact: true,
+                        component: AuthenticatedCustomPage,
+                        path: "/user",
+                    },
+                ],
+            }}
             LoginPage={Login}
             Title={Title}
             Header={Header}
@@ -119,11 +141,7 @@ function App() {
                   list:OrderList,
                   icon: <Icons.ShoppingOutlined />,
               },
-              {
-                  name:"user",
-                  list:UserList,
-                  icon:<Icons.UserOutlined />
-              }
+             
             
             ]}
         />

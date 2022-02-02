@@ -282,27 +282,27 @@
   resolved "https://registry.yarnpkg.com/@ctrl/tinycolor/-/tinycolor-3.4.0.tgz#c3c5ae543c897caa9c2a68630bed355be5f9990f"
   integrity sha512-JZButFdZ1+/xAfpguQHoabIXkcqRRKpMrWKBkpEZZyxfY9C1DpADFB8PEqGSTeFr135SaTRfKqGKx5xSCLI7ZQ==
 
-"@pankod/refine-react-router@^2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@pankod/refine-react-router/-/refine-react-router-2.5.0.tgz#cd705f5a3c9237c79044a6cc988b87de9f58bde2"
-  integrity sha512-wT2pWkW8Tra83Wlnt7++U7rgivhdEPLP+p/9aIT3bbSPISWcbopOy0qi+2MA93jscFHl5CvgHFcPXDB5c+SdCQ==
+"@pankod/refine-react-router@^2.7.0":
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/@pankod/refine-react-router/-/refine-react-router-2.7.1.tgz#7d212f155d0d5bfe505e62701f017efa6b1244d2"
+  integrity sha512-VAj+fY+b8cT29vCB8PVcbphS3Sw4Xw5yn+s3vy5PCkP+01kKcUpAs5rH5Q7ytJvGrOo5bVts56UMvxhKviXOGw==
   dependencies:
-    "@pankod/refine" "^2.5.0"
+    "@pankod/refine" "^2.7.1"
     react-router-dom "^5.3.0"
 
-"@pankod/refine-strapi-v4@^2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@pankod/refine-strapi-v4/-/refine-strapi-v4-2.5.0.tgz#8cf70bb50b2626f876f7304bd88e982a6e91c44f"
-  integrity sha512-zaPqSSbC15Gm3HRtYgYorWAlzCxmbnJcoly8WUm8XPEfNd7aeZS1wAaIX/c6PpyiCcgsYciMUziMQYTkXUsixQ==
+"@pankod/refine-strapi-v4@^2.7.0":
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/@pankod/refine-strapi-v4/-/refine-strapi-v4-2.7.1.tgz#1dad3756d1b61471e2d574f84d5d0d72e3d36fa0"
+  integrity sha512-kQyzXt/nMGbYLFpGnkSiu6IuiA4WGqob35rvuR+RGiDCH6mhQhvEu0jtM60Gb8FO6wU30WPcOxWEZ+AsakxbUQ==
   dependencies:
-    "@pankod/refine" "^2.5.0"
+    "@pankod/refine" "^2.7.1"
     axios "^0.21.4"
     qs "^6.10.1"
 
-"@pankod/refine@^2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@pankod/refine/-/refine-2.5.0.tgz#ce643ec0f18e44bd3be68e85ac2b374e048eac43"
-  integrity sha512-Ax6XsyQHqP02dwIggaFj6PebJhEuv3vmhIGf4jpMpaRkK6lkjKh3yvzITdSlkilN/LtW0rcpghyk631mmXd+WA==
+"@pankod/refine@^2.7.1":
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/@pankod/refine/-/refine-2.7.1.tgz#12544efea58160a5a3aae56cc64b748fa8eb682f"
+  integrity sha512-N29aO9zK6jB6so1fvE+XpupknZJofwhEEJTWJ3p8HMTEVoLD71YvorjmXMRZxIj2BHmUI8haDurVLIWzq8lx2A==
   dependencies:
     "@ant-design/icons" "^4.5.0"
     antd "^4.17.1"

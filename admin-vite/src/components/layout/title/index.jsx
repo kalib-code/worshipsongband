@@ -7,13 +7,15 @@ export const Title = ({ collapsed }) => (
   <Link to="/">
     {collapsed ? (
       <img
-        src={""}
+        src={"http://localhost:1337/uploads/logo_a773acf2b1.png?updated_at=2022-01-28T06:46:59.826Z"}
         alt="WBS"
         style={{
           display: "flex",
+          width: "50px",
           alignItems: "center",
           justifyContent: "center",
-          padding: "12px 24px",
+         // padding: "10px 10px 10px  0px",
+         margin: "20px",
         }}
       />
     ) : (

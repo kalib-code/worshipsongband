@@ -53,7 +53,7 @@ export const Login = () => {
         <Col xs={22}>
           <div style={containerStyles}>
             <div style={imageContainer}>
-              <img src="https://www.worshipsong.com/images/ws-logo.png" alt="Refine Logo" />
+              <img src="https://www.worshipsong.com/images/ws-logo.png" alt="worshipsong  band Logo" />
             </div>
             <Card title={CardTitle} headStyle={{ borderBottom: 0 }}>
               <Form

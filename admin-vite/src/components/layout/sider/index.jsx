@@ -10,15 +10,20 @@ import {
     useLogout,
     useTitle,
     useNavigation,
+    useGetIdentity,
 } from "@pankod/refine";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles.css.js";
 
 const {
     RightOutlined,
-    LogoutOutlined
+    LogoutOutlined,
+    UserOutlined
  } = Icons;
 
+
+
 export const Sider= () => {
+    const { data: user } = useGetIdentity();
     const [collapsed, setCollapsed] = useState(false);
     const { mutate: logout } = useLogout();
     const Title = useTitle();
@@ -54,6 +59,11 @@ export const Sider= () => {
                         setCollapsed(true);
                     }
 
+                    if(key === "user"){
+                        push(`/user`);
+                        return;
+                    }
+
                     push(key);
                 }}
             >
@@ -80,6 +90,10 @@ export const Sider= () => {
                         </Menu.Item>
                     );
                 })}
+
+                    <Menu.Item key="user" icon={<UserOutlined />}>
+                        {"User"}
+                    </Menu.Item>
 
                     <Menu.Item key="logout" icon={<LogoutOutlined />}>
                         {translate("buttons.logout", "Logout")}
