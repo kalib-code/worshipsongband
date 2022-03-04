@@ -1,23 +1,21 @@
+const YOUR_DOMAIN = "http://localhost:3000";
+
 module.exports = {
   async stripe(ctx) {
 
-      //Get sk from user database
+  
     const entity = await strapi.query('plugin::users-permissions.user').findOne(ctx.request.body.artist_id);
     const stripe = require("stripe")(entity.stripe_secret_key);
-  
-
-    const YOUR_DOMAIN = "http://localhost:3000";
 
     const orderEntry = await strapi.entityService.create('api::order.order', {
-        data: {
-          orderNumber:" session.id",
-          song: ctx.request.body.song_id,
-          users: ctx.state.user.id
-        },
-      });
+      data: {
+        song: ctx.request.body.song_id,
+        users: ctx.request.body.userInfo.id,
+      },
+    });
 
     const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
+      payment_method_types: ["card"],
       line_items: ctx.request.body.product_data,
       mode: "payment",
       success_url: `${YOUR_DOMAIN}/user?success=true&orderID=${orderEntry.id}`, 
@@ -25,6 +23,7 @@ module.exports = {
     });
 
 
+    
 
     const payment = await strapi.entityService.create('api::payment.payment', {
         data: {
@@ -36,7 +35,7 @@ module.exports = {
         },
       });
 
-      await strapi.entityService.update('api::order.order',payment.id, {
+      await strapi.entityService.update('api::order.order',orderEntry.id, {
         data: {
           payment: payment.id
         },
